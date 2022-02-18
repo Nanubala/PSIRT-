@@ -10,8 +10,6 @@ g = Github(access_token)
 for repo in g.get_user().get_repos():
     print("repo name is ::", repo)
 
-    content = repo.get_contents("")
-    print("content ::", content)
     for issue in repo.get_issues():
         # print("issue name is ::", issue)
 
@@ -22,9 +20,16 @@ for repo in g.get_user().get_repos():
                 b1=b.replace("**","")
                 dict_1 = json.dumps(b1)
                 b = issue.body.__repr__()
-                a = re.search('Affected Products:', b)
+               # a = re.search('Affected Products:', b)
                 print("*********PSIRT issue********", issue)
                 start = b.find("Affected Products:")
                 end = b.find("Dependent Products")
                 substring = b[start:end]
                 print(substring.replace("<br />", ""))
+                content = repo.get_contents("")
+                print("content ::", content)
+                for x in range(len(content)):
+                    if (content[x].__eq__("simple-get")):
+                        print("true")
+                    else:
+                        issue.create_comment("Afftected package simple-get 4.0.0 is not used")
