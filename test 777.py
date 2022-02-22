@@ -32,4 +32,4 @@ for repo in g.get_user().get_repos():
                     if (content[x].__eq__("simple-get")):
                         print("true")
                     else:
-                        issue.create_comment("Afftected package simple-get 4.0.0 is not used")
+                        issue.create_comment("Affected package simple-get 4.0.0 is not used")
